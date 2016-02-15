@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP与Excel的那些事 | 过渡网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="经常会用到php进行开发，最近有个项目要读取Excel文件中的数据，另外还有将数据导出到Excel或者Csv文件中。下面就一起来聊聊php与excel的那些事儿吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP与Excel的那些事">
+<meta property="og:url" content="http://gtskk.coding.io/2015/09/15/php-excel-go/index.html">
+<meta property="og:site_name" content="过渡网">
+<meta property="og:description" content="经常会用到php进行开发，最近有个项目要读取Excel文件中的数据，另外还有将数据导出到Excel或者Csv文件中。下面就一起来聊聊php与excel的那些事儿吧。">
+<meta property="og:image" content="http://gtskk.coding.io/images/weixin.jpg">
+<meta property="og:updated_time" content="2015-09-22T02:31:50.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP与Excel的那些事">
+<meta name="twitter:description" content="经常会用到php进行开发，最近有个项目要读取Excel文件中的数据，另外还有将数据导出到Excel或者Csv文件中。下面就一起来聊聊php与excel的那些事儿吧。">
+  
+    <link rel="alternative" href="/atom.xml" title="过渡网" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<!-- Baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?348d053421672f6134db81041c29d5dc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- End Baidu Analytics -->
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://dn-coding-net-production-static.qbox.me/8babbd7b-a51c-41fb-9589-715e6950512a.jpg?imageMogr2/auto-orient/format/jpeg/crop/!200x200a0a0" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">过渡网</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">劳逸结合</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/emoji-cheet-sheet-cn/index.html">Emoji中文手册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Gtskk" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/1809873750/home" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/gtskk" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/开源/" style="font-size: 10px;">开源</a> <a href="/tags/影视/" style="font-size: 13.33px;">影视</a> <a href="/tags/影视分享/" style="font-size: 10px;">影视分享</a> <a href="/tags/心理学/" style="font-size: 13.33px;">心理学</a> <a href="/tags/搞笑/" style="font-size: 10px;">搞笑</a> <a href="/tags/教程/" style="font-size: 20px;">教程</a> <a href="/tags/经验分享/" style="font-size: 10px;">经验分享</a> <a href="/tags/重大公告/" style="font-size: 10px;">重大公告</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://gtskk.coding.io/">哥特式KK</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://gtskk.github.io/">过渡网</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<!-- <div class="slider-trigger"></div> -->
+  		<h1 class="header-author js-mobile-header hide">过渡网</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://dn-coding-net-production-static.qbox.me/8babbd7b-a51c-41fb-9589-715e6950512a.jpg?imageMogr2/auto-orient/format/jpeg/crop/!200x200a0a0" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">过渡网</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">劳逸结合</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/emoji-cheet-sheet-cn/index.html">Emoji中文手册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Gtskk" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1809873750/home" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/gtskk" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-php-excel-go" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/15/php-excel-go/" class="article-date">
+  	<time datetime="2015-09-15T14:48:15.000Z" itemprop="datePublished">2015-09-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP与Excel的那些事
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经常会用到<code>php</code>进行开发，最近有个项目要读取Excel文件中的数据，另外还有将数据导出到Excel或者Csv文件中。<br>下面就一起来聊聊<code>php</code>与<code>excel</code>的那些事儿吧。<br><a id="more"></a></p>
+<h2 id="u5B89_u88C5_u914D_u7F6E"><a href="#u5B89_u88C5_u914D_u7F6E" class="headerlink" title="安装配置"></a>安装配置</h2><p>首先，你需要打开<code>php_zip</code>扩展，找到你起作用的<code>php.ini</code>文件，并打开这个扩展，将<code>php</code>文件夹里面的<code>ext</code>文件夹中的<code>php_zip.dll</code>文件找到，并复制到system32系统文件夹中（具体要看你的配置方法）。启用了之后就会再出现</p>
+<blockquote>
+<p>&lt;Fatal error:Class ‘ZipArchive’ not found in …..</p>
+</blockquote>
+<p>的错误了。然后，就可以使用它了，最好的办法是看它自带的<code>Examples</code>示例文档，就可以大概知道它的基本用法了。</p>
+<p>不过，在实际运用的过程中，还真是有不少坑的，下面就聊一下：</p>
+<h2 id="u8BFB_u53D6Excel_u6587_u4EF6_u4E2D_u7684_u6570_u636E"><a href="#u8BFB_u53D6Excel_u6587_u4EF6_u4E2D_u7684_u6570_u636E" class="headerlink" title="读取Excel文件中的数据"></a>读取Excel文件中的数据</h2><p>在使用<a href="http://phpexcel.codeplex.com/" target="_blank" rel="external">PhpExcel</a>库读取<code>Excel</code>文件时，要切记的是：导入的文档最好是利用<code>Microsoft Office Excel</code>或者<code>WPS</code>等类似的文档软件生成的，不要使用<code>PHP</code>等语言生成的文件，可以通过<code>Sublime Text2</code>或者其他编辑器打开文件来识别，如打开是<code>Html</code>代码的则最好换掉。</p>
+<h2 id="u5BFC_u51FA_u5230Excel_u6216_u8005Csv_u6587_u4EF6"><a href="#u5BFC_u51FA_u5230Excel_u6216_u8005Csv_u6587_u4EF6" class="headerlink" title="导出到Excel或者Csv文件"></a>导出到Excel或者Csv文件</h2><p>主要有以下几种方式：</p>
+<ol>
+<li>通过把Content-Type设置为application/octet-stream，可以把动态生成的内容当作文件来下载；<br>如：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span>  </span><br><span class="line">	<span class="variable">$filename</span> = <span class="string">"document.txt"</span>;  </span><br><span class="line">	header(<span class="string">'Content-Type: application/octet-stream'</span>);  </span><br><span class="line">	header(<span class="string">'Content-Disposition: attachment; filename='</span> . <span class="variable">$filename</span>);  </span><br><span class="line">	<span class="keyword">print</span> <span class="string">"Hello!"</span>; </span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.使用<a href="http://phpexcel.codeplex.com/" target="_blank" rel="external">PhpExcel</a>库。getCol为递归实现的函数，用于根据数字返回对应的列号编码。因为导出的过程中需要指出行号，列号。行号为简单的数字，而列号则为“A-Z”的组合。为了方便二维数组的导入，根据列数自动得到列号编码。如“5”-&gt;“E”、“27”-&gt;“AZ”。</p>
+<ol>
+<li>使用PHPExcel等库，确实比较容易实现，但对大量数据的支持很不好，很容易到达PHP内存使用上限。还可以利用<code>fputcsv</code>写<code>CSV</code>文件的方法，直接向浏览器输出Excel文件。<br>如：</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span>  </span><br><span class="line"><span class="comment">// 输出Excel文件头，可把user.csv换成你要的文件名  </span></span><br><span class="line">header(<span class="string">'Content-Type: application/vnd.ms-excel'</span>);  </span><br><span class="line">header(<span class="string">'Content-Disposition: attachment;filename="user.csv"'</span>);  </span><br><span class="line">header(<span class="string">'Cache-Control: max-age=0'</span>);     </span><br><span class="line"><span class="comment">// 从数据库中获取数据，为了节省内存，不要把数据一次性读到内存，从句柄中一行一行读即可  </span></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">'select * from tbl where ……'</span>;  </span><br><span class="line"><span class="variable">$stmt</span> = <span class="variable">$db</span>-&gt;query(<span class="variable">$sql</span>);     </span><br><span class="line"><span class="comment">// 打开PHP文件句柄，php://output 表示直接输出到浏览器  </span></span><br><span class="line"><span class="variable">$fp</span> = fopen(<span class="string">'php://output'</span>, <span class="string">'a'</span>);    </span><br><span class="line"><span class="comment">// 输出Excel列名信息  </span></span><br><span class="line"><span class="variable">$head</span> = <span class="keyword">array</span>(<span class="string">'姓名'</span>, <span class="string">'性别'</span>, <span class="string">'年龄'</span>, <span class="string">'Email'</span>, <span class="string">'电话'</span>, <span class="string">'……'</span>);  </span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$head</span> <span class="keyword">as</span> <span class="variable">$i</span> =&gt; <span class="variable">$v</span>) &#123;  </span><br><span class="line">    <span class="comment">// CSV的Excel支持GBK编码，一定要转换，否则乱码  </span></span><br><span class="line">    <span class="variable">$head</span>[<span class="variable">$i</span>] = iconv(<span class="string">'utf-8'</span>, <span class="string">'gbk'</span>, <span class="variable">$v</span>);  </span><br><span class="line">&#125;    </span><br><span class="line"><span class="comment">// 将数据通过fputcsv写到文件句柄  </span></span><br><span class="line">fputcsv(<span class="variable">$fp</span>, <span class="variable">$head</span>);   </span><br><span class="line"><span class="comment">// 计数器  </span></span><br><span class="line"><span class="variable">$cnt</span> = <span class="number">0</span>;  </span><br><span class="line"><span class="comment">// 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小  </span></span><br><span class="line"><span class="variable">$limit</span> = <span class="number">100000</span>;    </span><br><span class="line"><span class="comment">// 逐行取出数据，不浪费内存  </span></span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$row</span> = <span class="variable">$stmt</span>-&gt;fetch(Zend_Db::FETCH_NUM)) &#123;   </span><br><span class="line">    <span class="variable">$cnt</span> ++;  </span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$limit</span> == <span class="variable">$cnt</span>) &#123; </span><br><span class="line">        <span class="comment">//刷新一下输出buffer，防止由于数据过多造成问题  </span></span><br><span class="line">        ob_flush();  </span><br><span class="line">        flush();  </span><br><span class="line">        <span class="variable">$cnt</span> = <span class="number">0</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">   </span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$row</span> <span class="keyword">as</span> <span class="variable">$i</span> =&gt; <span class="variable">$v</span>) &#123;  </span><br><span class="line">        <span class="variable">$row</span>[<span class="variable">$i</span>] = iconv(<span class="string">'utf-8'</span>, <span class="string">'gbk'</span>, <span class="variable">$v</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    fputcsv(<span class="variable">$fp</span>, <span class="variable">$row</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先聊到这儿，有想到的再补充……</p>
+<hr>
+<p>参考：</p>
+<p><a href="http://developer.51cto.com/art/200912/168322.htm" target="_blank" rel="external">使用PHPExcel要点解析</a><br><a href="http://www.cnblogs.com/fredshare/archive/2012/10/29/2744243.html" target="_blank" rel="external">PHP导出excel文件的几种方式</a></p>
+<hr>
+<p><img src="/images/weixin.jpg" alt="微信"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/17/teshusizongzhuanzu/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          《特殊失踪专案组：失踪的黑色M》无限反转
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/13/somebusy/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">无题</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407898571339227" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="php-excel-go" data-title="PHP与Excel的那些事" data-url="http://gtskk.coding.io/2015/09/15/php-excel-go/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"github-gtskk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 过渡网
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		scrollup: true,
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
